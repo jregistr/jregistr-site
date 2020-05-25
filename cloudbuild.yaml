@@ -11,4 +11,4 @@ steps:
 
   - name: gcr.io/$PROJECT_ID/firebase
     id: "Deploy to Firebase"
-    args: ['deploy', "--project=$FIRE_BASE_PROJECT", '--only=hosting']
+    args: ['deploy', "--project=$_FIRE_BASE_PROJECT", '--only=hosting']
