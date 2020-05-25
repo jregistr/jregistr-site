@@ -1,22 +1,35 @@
-import React from "react"
-import { Link } from "gatsby"
+import * as React from "react"
+import {graphql as gql, Link, useStaticQuery, withPrefix} from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import "./styles/index.sass"
 
-const IndexPage = () => (
-  <Layout>
-    Photo by Michael Fousert on Unsplash
-    <SEO title="Home" />
-    {/* <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> */}
-  </Layout>
-)
+const IndexPage = () => {
+    const data = useStaticQuery(gql`
+        query FooobarQuery {
+            file(relativePath: { eq: "coming-soon.jpg" }) {
+                childImageSharp {
+                    fluid {
+                        src
+                        originalImg
+                    }
+                }
+                
+            }
+        }
+    `)
+
+    return (
+        <>
+            <main>
+                <div className="wrapper"
+                     style={{backgroundImage: `url(${data.file.childImageSharp.fluid.originalImg})`}}>
+                    <div>
+                        <h1>Coming Soon</h1>
+                    </div>
+                </div>
+            </main>
+        </>
+    )
+}
 
 export default IndexPage

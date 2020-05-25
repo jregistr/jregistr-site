@@ -3,5 +3,12 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const {printSchema} = require("gatsby/graphql");
+const {promises: fs} = require("fs")
 
-// You can delete this file if you're not using it
+exports.onPostBootstrap = async ({store, reporter}) => {
+    const {schema} = store.getState();
+    reporter.info("[Custom Post Bootstrap] Generating schema.graphql file in root.");
+    const schemaString = printSchema(schema);
+    await fs.writeFile("schema.graphql", schemaString);
+}

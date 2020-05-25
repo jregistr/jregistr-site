@@ -1,0 +1,1 @@
+node_modules/gatsby-transformer-sharp/fragments.js
