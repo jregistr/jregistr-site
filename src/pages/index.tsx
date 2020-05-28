@@ -4,16 +4,19 @@ import {graphql as gql, Link, useStaticQuery, withPrefix} from "gatsby"
 import "./styles/index.sass"
 
 function addNetlifyIdentityScript(): void {
-    const script = document.createElement("script");
-    script.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
-    // script.async = true
-    document.body.appendChild(script);
+    if(document) {
+        const script = document.createElement("script");
+        script.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+        // script.async = true
+        document.body.appendChild(script);
+    }
 }
 
 function addAdminRedirectScript(): void {
-    const script = document.createElement("script");
-    script.async = true;
-    script.innerText = `
+    if(document) {
+        const script = document.createElement("script");
+        script.async = true;
+        script.innerText = `
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
                 if (!user) {
@@ -24,7 +27,8 @@ function addAdminRedirectScript(): void {
             })
         }
     `
-    document.body.appendChild(script);
+        document.body.appendChild(script);
+    }
 }
 
 const IndexPage = () => {
