@@ -9,8 +9,9 @@ public_folder: "media"
 collections:
   - name: "metadata"
     label: "Site Metadata"
-    folder: "content/metadata"
+    folder: "content"
     create: true
+    slug: "site-metadata"
     fields:
       - {label: "Site Title", name: "siteTitle", widget: "string", default: "Jregistr"}
       - {label: "Coming Soon Message", name: "soonMsg", widget: "string", default: "Coming Soon"}
